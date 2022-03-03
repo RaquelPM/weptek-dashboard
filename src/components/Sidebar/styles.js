@@ -55,6 +55,22 @@ export const Sidbar = styled.div`
   @media only screen and (min-width: 800px) {
     width: 210px !important;
     padding-left: 20px;
+    .title {
+      width: 100% !important;
+      padding-right: 40px;
+    }
+  }
+
+  .title {
+    color: white !important;
+    font-size: 24px;
+    font-weight: 300;
+    font-style: italic;
+    overflow: hidden;
+    text-align: center;
+    width: 0px;
+    position: absolute;
+    top: 20px;
   }
 `
 

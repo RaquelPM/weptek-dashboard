@@ -1,10 +1,10 @@
-import { css } from 'styled-components';
+import { css } from 'styled-components'
 
 const theme = {
   colors: {
     primary: '#944BBB',
     dark: '#4D4D4D',
-    gray: '#9A9A9A',
+    gray: '#C4C4C4',
     light_gray: '#E5E5E5',
     red: '#FF3131',
   },
@@ -18,6 +18,6 @@ const theme = {
       max-width: 520px;
     `,
   },
-};
+}
 
-export default theme;
+export default theme

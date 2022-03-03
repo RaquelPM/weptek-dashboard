@@ -1,15 +1,20 @@
 import React, { useState } from 'react'
 
-import { FaBars } from 'react-icons/fa'
+import { FaBars, FaAddressCard } from 'react-icons/fa'
 import {
   AiOutlineQuestionCircle,
   AiOutlineUser,
   AiOutlineImport,
   AiOutlineCheckCircle,
   AiFillCar,
+  AiOutlineInfoCircle,
+  AiOutlineSetting,
 } from 'react-icons/ai'
-import { BiTimeFive } from 'react-icons/bi'
+import { BiTimeFive, BiDollar } from 'react-icons/bi'
 import { ImCancelCircle } from 'react-icons/im'
+import { FiUsers, FiMapPin } from 'react-icons/fi'
+import { CgArrowsExchange } from 'react-icons/cg'
+import { MdAddRoad } from 'react-icons/md'
 
 import { useOutsideClick } from '../../hooks'
 
@@ -19,8 +24,10 @@ import NSidebarItem from '../NSidebarItem'
 const Sidebar = () => {
   const [close, setClose] = useState(false)
   const [viagens, setViagens] = useState(false)
+  const [config, setConfig] = useState(false)
   const sidebar = useOutsideClick(() => setClose(false))
   const viagensClose = useOutsideClick(() => setViagens(false))
+  const configClose = useOutsideClick(() => setConfig(false))
 
   return (
     <Container>
@@ -30,6 +37,12 @@ const Sidebar = () => {
       </ContainerTop>
       <Sombra close={close} />
       <Sidbar ref={sidebar} close={close}>
+        <p className="title">Weptek</p>
+        <NSidebarItem
+          label="Principal"
+          icon={<AiOutlineInfoCircle className="icon" />}
+          route="/"
+        />
         <NSidebarItem
           label="Perfil"
           icon={<AiOutlineUser className="icon" />}
@@ -56,6 +69,48 @@ const Sidebar = () => {
           <NSidebarItem
             label="Canceladas"
             icon={<ImCancelCircle className="icon" />}
+            route="/perfil"
+          />
+        </SidebarItem>
+
+        <NSidebarItem
+          label="Passageiros"
+          icon={<FiUsers className="icon" />}
+          route="/"
+        />
+        <NSidebarItem
+          label="Motoristas"
+          icon={<FaAddressCard className="icon" />}
+          route="/"
+        />
+
+        <NSidebarItem
+          label="Financeiro"
+          icon={<BiDollar className="icon" />}
+          route="/"
+        />
+
+        <NSidebarItem
+          label="Configurações"
+          arrow
+          arrowBottom={config}
+          icon={<AiOutlineSetting className="icon" />}
+          onClick={() => setConfig(!config)}
+        />
+        <SidebarItem ref={configClose} close={config}>
+          <NSidebarItem
+            label="Rotas"
+            icon={<CgArrowsExchange className="icon" />}
+            route="/perfil"
+          />
+          <NSidebarItem
+            label="Bairros"
+            icon={<FiMapPin className="icon" />}
+            route="/perfil"
+          />
+          <NSidebarItem
+            label="Endereços"
+            icon={<MdAddRoad className="icon" />}
             route="/perfil"
           />
         </SidebarItem>

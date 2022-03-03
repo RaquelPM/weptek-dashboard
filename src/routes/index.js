@@ -1,13 +1,13 @@
 import React from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
-import { Sidebar } from '../components'
+import { PageBase } from '../components'
 
 const Rotas = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="*" element={<Sidebar />} />
+        <Route path="*" element={<PageBase />} />
       </Routes>
     </BrowserRouter>
   )
