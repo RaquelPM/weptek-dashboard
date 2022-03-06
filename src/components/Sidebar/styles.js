@@ -23,6 +23,13 @@ export const ContainerTop = styled.div`
     font-size: 24px;
     font-weight: 300;
     font-style: italic;
+    background: transparent;
+    width: 90px;
+    margin-right: 10px;
+    border: none;
+  }
+  .icon {
+    color: white;
   }
   .icon_sid {
     position: absolute;
@@ -55,9 +62,9 @@ export const Sidbar = styled.div`
   @media only screen and (min-width: 800px) {
     width: 210px !important;
     padding-left: 20px;
-    .title {
+    .title_div {
       width: 100% !important;
-      padding-right: 40px;
+      padding-right: 60px;
     }
   }
 
@@ -66,11 +73,27 @@ export const Sidbar = styled.div`
     font-size: 24px;
     font-weight: 300;
     font-style: italic;
-    overflow: hidden;
     text-align: center;
-    width: 0px;
+    background: transparent;
+    border: none;
+  }
+
+  .title_div {
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
     position: absolute;
     top: 20px;
+    width: 0px;
+    overflow: hidden;
+
+    .icon {
+      color: white;
+      position: absolute;
+      right: 55px;
+    }
   }
 `
 

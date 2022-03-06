@@ -16,6 +16,7 @@ export const Content = styled.div`
   justify-content: center;
   width: 100%;
   height: 100%;
+  padding-bottom: 20px;
   margin-left: 40px;
   @media only screen and (min-width: 800px) {
     margin-left: 0px;

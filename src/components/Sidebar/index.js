@@ -15,6 +15,7 @@ import { ImCancelCircle } from 'react-icons/im'
 import { FiUsers, FiMapPin } from 'react-icons/fi'
 import { CgArrowsExchange } from 'react-icons/cg'
 import { MdAddRoad } from 'react-icons/md'
+import { BsPencil } from 'react-icons/bs'
 
 import { useOutsideClick } from '../../hooks'
 
@@ -33,11 +34,17 @@ const Sidebar = () => {
     <Container>
       <ContainerTop>
         <FaBars size={24} onClick={() => setClose(true)} className="icon_sid" />
-        <p className="title">Weptek</p>
+
+        <input className="title" value="Weptek" />
+        <BsPencil className="icon" size={15} />
       </ContainerTop>
       <Sombra close={close} />
       <Sidbar ref={sidebar} close={close}>
-        <p className="title">Weptek</p>
+        <div className="title_div">
+          <input className="title" value="Weptek" />
+          <BsPencil className="icon" size={15} />
+        </div>
+
         <NSidebarItem
           label="Principal"
           icon={<AiOutlineInfoCircle className="icon" />}
@@ -81,12 +88,6 @@ const Sidebar = () => {
         <NSidebarItem
           label="Motoristas"
           icon={<FaAddressCard className="icon" />}
-          route="/"
-        />
-
-        <NSidebarItem
-          label="Financeiro"
-          icon={<BiDollar className="icon" />}
           route="/"
         />
 

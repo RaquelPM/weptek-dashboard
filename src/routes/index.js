@@ -1,13 +1,13 @@
 import React from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
-import { PageBase } from '../components'
+import { Principal } from '../pages'
 
 const Rotas = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="*" element={<PageBase />} />
+        <Route path="*" element={<Principal />} />
       </Routes>
     </BrowserRouter>
   )

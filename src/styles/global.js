@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from 'styled-components'
 
 export default createGlobalStyle`
   * {
@@ -14,6 +14,23 @@ export default createGlobalStyle`
   h1, h2, p, label, button, a {
     color: ${({ theme }) => theme.colors.dark};
   }
+
+  div::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+  }
+
+  div::-webkit-scrollbar-track {
+    background: none;
+  }
+
+  div::-webkit-scrollbar-thumb {
+    background: #bdbdbd;
+    border-radius: 10px;
+    background-clip: content-box;
+    border: 1px solid transparent;
+  }
+
 
   button {
     border: 0;
@@ -37,4 +54,4 @@ export default createGlobalStyle`
   input {
     outline: none;
   }
-`;
+`
