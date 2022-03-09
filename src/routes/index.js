@@ -2,7 +2,7 @@ import React from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 import { Principal } from '~/pages'
-import { Login } from '~/pages/Auth'
+import { Login, Register } from '~/pages/Auth'
 
 const Rotas = () => {
   return (
@@ -10,6 +10,7 @@ const Rotas = () => {
       <Routes>
         <Route path="*" element={<Principal />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/cadastro" element={<Register />} />
       </Routes>
     </BrowserRouter>
   )

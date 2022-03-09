@@ -15,6 +15,8 @@ export const Container = styled.div`
   }
 
   .sentence {
+    max-width: 90%;
+
     color: white;
     font-size: 20px;
     text-align: center;
