@@ -10,7 +10,7 @@ import {
   AiOutlineInfoCircle,
   AiOutlineSetting,
 } from 'react-icons/ai'
-import { BiTimeFive, BiDollar } from 'react-icons/bi'
+import { BiTimeFive } from 'react-icons/bi'
 import { ImCancelCircle } from 'react-icons/im'
 import { FiUsers, FiMapPin } from 'react-icons/fi'
 import { CgArrowsExchange } from 'react-icons/cg'
