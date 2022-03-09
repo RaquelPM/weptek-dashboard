@@ -8,7 +8,7 @@ export default createGlobalStyle`
 
     transition: all 0.3s;
 
-    font: 400 16px Comfortaa, sans-serif;
+    font: 400 15px Comfortaa, sans-serif;
   }
 
   h1, h2, p, label, button, a {
@@ -53,5 +53,6 @@ export default createGlobalStyle`
 
   input {
     outline: none;
+    border-width: 0;
   }
 `

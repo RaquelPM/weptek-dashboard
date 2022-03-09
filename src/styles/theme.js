@@ -18,6 +18,12 @@ const theme = {
       max-width: 520px;
     `,
   },
+  media: {
+    sm: '@media screen and (min-width: 600px)',
+    md: '@media screen and (min-width: 768px)',
+    lg: '@media screen and (min-width: 992px)',
+    xl: '@media screen and (min-width: 1200px)',
+  },
 }
 
 export default theme

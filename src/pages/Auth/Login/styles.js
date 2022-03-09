@@ -3,15 +3,33 @@ import styled from 'styled-components'
 export const Container = styled.div`
   position: relative;
 
-  width: 100vw;
+  width: 100%;
   min-height: 100vh;
 
   display: flex;
   flex-direction: column;
   align-items: center;
 
+  ${({ theme }) => theme.media.lg} {
+    flex-direction: row;
+  }
+
+  .sentence {
+    color: white;
+    font-size: 20px;
+    text-align: center;
+
+    ${({ theme }) => theme.media.md} {
+      font-size: 25px;
+    }
+
+    ${({ theme }) => theme.media.lg} {
+      font-size: 30px;
+    }
+  }
+
   > main {
-    padding: 71px 0 calc(60vw - 90px);
+    padding: 71px 0 calc(30vw + 30px);
 
     flex: 1;
     width: 100%;
@@ -20,30 +38,30 @@ export const Container = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+
+    ${({ theme }) => theme.media.lg} {
+      padding: 0;
+
+      width: 50%;
+      height: 100vh;
+    }
 
     > .sentence {
-      color: white;
-      font-size: 20px;
-      text-align: center;
+      ${({ theme }) => theme.media.lg} {
+        display: none;
+      }
     }
 
     > .logo {
       margin: 30px 0 18px;
     }
 
-    > .input {
-      margin: 16px 0 0;
-      padding: 0 14px;
+    > a {
+      margin: 23px 0 0;
 
-      width: calc(100vw - 36px);
-      height: 50px;
-      border-radius: 10px;
-      border-width: 0;
-
-      &::placeholder {
-        color: ${({ theme }) => theme.colors.dark};
-        font-size: 15px;
-      }
+      color: white;
+      font-size: 16px;
     }
   }
 
@@ -52,14 +70,41 @@ export const Container = styled.div`
 
     background: ${({ theme }) => theme.colors.dark};
     width: 100%;
-    height: 150px;
+    height: 50vw;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    ${({ theme }) => theme.media.lg} {
+      width: 50%;
+      height: 100vh;
+    }
+
+    > .sentence {
+      display: none;
+
+      ${({ theme }) => theme.media.lg} {
+        display: block;
+      }
+    }
 
     > .image {
       position: absolute;
-      bottom: 40px;
+      bottom: 20vw;
 
       width: 60%;
-      margin: 0 20%;
+      margin: 0 20vw;
+
+      ${({ theme }) => theme.media.lg} {
+        position: relative;
+        bottom: 0;
+
+        margin: 0;
+
+        width: 70%;
+      }
     }
   }
 `
