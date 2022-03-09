@@ -7,7 +7,7 @@ import { FiUsers } from 'react-icons/fi'
 import { BsPencil } from 'react-icons/bs'
 
 import { Container, ContainerCards, ContainerTax } from './styles'
-import { PageBase, NInfoCard, NTableCard } from '../../components'
+import { PageBase, NInfoCard, NTableCard } from '~/components'
 
 const Principal = () => (
   <PageBase

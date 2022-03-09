@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { NButton } from '../../../../components'
+import { NButton } from '~/components'
 
 import { Container } from './styles'
 

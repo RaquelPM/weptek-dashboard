@@ -1,7 +1,7 @@
 import React from 'react'
 
-import logo from '../../../assets/logo.svg'
-import image from '../../../assets/login-image.svg'
+import logo from '~/assets/logo.svg'
+import image from '~/assets/login-image.svg'
 
 import { Container } from './styles'
 import Form from './Form'

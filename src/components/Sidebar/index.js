@@ -17,7 +17,7 @@ import { CgArrowsExchange } from 'react-icons/cg'
 import { MdAddRoad } from 'react-icons/md'
 import { BsPencil } from 'react-icons/bs'
 
-import { useOutsideClick } from '../../hooks'
+import { useOutsideClick } from '~/hooks'
 
 import { Container, Sidbar, Sombra, ContainerTop, SidebarItem } from './styles'
 import NSidebarItem from '../NSidebarItem'
