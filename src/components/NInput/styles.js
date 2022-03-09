@@ -9,7 +9,11 @@ export const Container = styled.input`
   border-radius: 10px;
   background: ${({ theme, light }) => (light ? 'white' : theme.colors.dark)};
 
+  color: ${({ theme, light }) => (light ? theme.colors.dark : 'white')};
+
   &::placeholder {
+    opacity: 0.7;
+
     color: ${({ theme, light }) => (light ? theme.colors.dark : 'white')};
     font-size: 15px;
   }
