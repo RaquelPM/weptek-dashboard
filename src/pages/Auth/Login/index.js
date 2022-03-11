@@ -22,7 +22,7 @@ const Login = () => (
         "Construa seus sonhos a<br />
         cada login"
       </p>
-      <img className="image" src={image} alt="image" />
+      <img className="image" src={image} alt="img" />
     </aside>
   </Container>
 )
