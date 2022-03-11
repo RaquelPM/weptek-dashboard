@@ -2,17 +2,21 @@ import React, { useState } from 'react'
 
 import { FaBars, FaAddressCard } from 'react-icons/fa'
 import {
-  AiOutlineQuestionCircle,
-  AiOutlineUser,
+  // AiOutlineQuestionCircle,
+  // AiOutlineUser,
   AiOutlineImport,
-  AiOutlineCheckCircle,
-  AiFillCar,
-  AiOutlineInfoCircle,
+  // AiOutlineCheckCircle,
+  // AiFillCar,
+  // AiOutlineInfoCircle,
   AiOutlineSetting,
 } from 'react-icons/ai'
-import { BiTimeFive } from 'react-icons/bi'
-import { ImCancelCircle } from 'react-icons/im'
-import { FiUsers, FiMapPin } from 'react-icons/fi'
+// import { BiTimeFive } from 'react-icons/bi'
+// import { ImCancelCircle } from 'react-icons/im'
+import {
+  // FiUsers,
+
+  FiMapPin,
+} from 'react-icons/fi'
 import { CgArrowsExchange } from 'react-icons/cg'
 import { MdAddRoad } from 'react-icons/md'
 import { BsPencil } from 'react-icons/bs'
@@ -24,10 +28,10 @@ import NSidebarItem from '../NSidebarItem'
 
 const Sidebar = () => {
   const [close, setClose] = useState(false)
-  const [viagens, setViagens] = useState(false)
+  // const [viagens, setViagens] = useState(false)
   const [config, setConfig] = useState(false)
   const sidebar = useOutsideClick(() => setClose(false))
-  const viagensClose = useOutsideClick(() => setViagens(false))
+  // const viagensClose = useOutsideClick(() => setViagens(false))
   const configClose = useOutsideClick(() => setConfig(false))
 
   return (
@@ -45,7 +49,7 @@ const Sidebar = () => {
           <BsPencil className="icon" size={15} />
         </div>
 
-        <NSidebarItem
+        {/* <NSidebarItem
           label="Principal"
           icon={<AiOutlineInfoCircle className="icon" />}
           route="/"
@@ -61,8 +65,8 @@ const Sidebar = () => {
           arrowBottom={viagens}
           icon={<AiFillCar className="icon" />}
           onClick={() => setViagens(!viagens)}
-        />
-        <SidebarItem ref={viagensClose} close={viagens}>
+        /> */}
+        {/* <SidebarItem ref={viagensClose} close={viagens}>
           <NSidebarItem
             label="Em andamento"
             icon={<BiTimeFive className="icon" />}
@@ -78,13 +82,13 @@ const Sidebar = () => {
             icon={<ImCancelCircle className="icon" />}
             route="/perfil"
           />
-        </SidebarItem>
+        </SidebarItem> */}
 
-        <NSidebarItem
+        {/* <NSidebarItem
           label="Passageiros"
           icon={<FiUsers className="icon" />}
           route="/"
-        />
+        /> */}
         <NSidebarItem
           label="Motoristas"
           icon={<FaAddressCard className="icon" />}
@@ -115,12 +119,12 @@ const Sidebar = () => {
             route="/perfil"
           />
         </SidebarItem>
-
+        {/*
         <NSidebarItem
           label="Suporte"
           icon={<AiOutlineQuestionCircle className="icon" />}
           route="/"
-        />
+        /> */}
 
         <NSidebarItem
           label="Sair"

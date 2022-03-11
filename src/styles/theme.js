@@ -4,9 +4,10 @@ const theme = {
   colors: {
     primary: '#944BBB',
     dark: '#4D4D4D',
-    gray: '#C4C4C4',
+    gray: '#D2D2D2',
     light_gray: '#E5E5E5',
     red: '#FF3131',
+    green: '#00B929',
   },
   styles: {
     cardWidth: css`

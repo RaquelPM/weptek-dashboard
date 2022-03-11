@@ -8,6 +8,8 @@ export const Container = styled.div`
   border-radius: 20px;
 
   padding: 13px 20px 16px 20px;
+
+  transition: all 0.7s;
 `
 
 export const Top = styled.div`

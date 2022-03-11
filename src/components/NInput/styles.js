@@ -35,6 +35,10 @@ export const Container = styled.div`
       color: ${({ theme, light }) => (light ? theme.colors.dark : 'white')};
       font-size: 15px;
     }
+
+    &:disabled {
+      opacity: 0.8;
+    }
   }
 
   > .error {
