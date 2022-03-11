@@ -45,7 +45,6 @@ export const Container = styled.div`
       padding: 40px 0;
 
       width: 50%;
-      min-height: 100vh;
     }
 
     > .sentence {
@@ -71,8 +70,8 @@ export const Container = styled.div`
   > aside {
     position: relative;
 
-    background: ${({ theme }) => theme.colors.dark};
     min-height: 50vw;
+    background: ${({ theme }) => theme.colors.dark};
 
     display: flex;
     flex-direction: column;
@@ -83,7 +82,7 @@ export const Container = styled.div`
       padding: 40px 0;
 
       width: 50%;
-      min-height: 100vh;
+      min-height: initial;
     }
 
     > .sentence {

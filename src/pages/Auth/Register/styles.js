@@ -11,7 +11,6 @@ export const Container = styled.div`
     padding: 40px 0;
 
     width: 50%;
-    min-height: 100vh;
     background: ${({ theme }) => theme.colors.primary};
 
     display: none;
@@ -40,7 +39,6 @@ export const Container = styled.div`
     padding: 40px 0;
 
     width: 100%;
-    min-height: 100vh;
 
     display: flex;
     flex-direction: column;

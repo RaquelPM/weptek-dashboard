@@ -1,3 +1,5 @@
+import { object, string, ref } from 'yup'
+
 export const fields = {
   name: {
     placeholder: 'Nome:',
@@ -10,6 +12,7 @@ export const fields = {
   phone: {
     placeholder: 'Telefone:',
     type: 'text',
+    mask: '(99) 99999-9999',
   },
   cpf: {
     placeholder: 'CPF:',
@@ -19,8 +22,25 @@ export const fields = {
     placeholder: 'Senha:',
     type: 'password',
   },
-  passwordConfirmation: {
+  passwordMatch: {
     placeholder: 'Confirmar senha:',
     type: 'password',
   },
 }
+
+export const schema = object({
+  name: string().required('Preencha esse campo!').min(4, 'Nome muito curto!'),
+  email: string().required('Preencha esse campo!').email('Email inválido!'),
+  phone: string()
+    .required('Preencha esse campo!')
+    .matches(/\(\d{2}\) \d{5}-\d{4}/g, 'Telefone inválido!'),
+  cpf: string()
+    .required('Preencha esse campo!')
+    .matches(/\d{3}.\d{3}.\d{3}-\d{2}/, 'CPF inválido!'),
+  password: string()
+    .required('Preencha esse campo!')
+    .min(8, 'Senha muito curta!'),
+  passwordMatch: string()
+    .required('Preencha esse campo!')
+    .oneOf([ref('password'), null], 'As senhas são diferentes!'),
+}).required()
