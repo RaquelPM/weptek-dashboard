@@ -5,10 +5,13 @@ export const Container = styled.div`
   min-height: 100vh;
 
   display: flex;
+  align-items: stretch;
 
-  aside {
+  > aside {
+    padding: 40px 0;
+
     width: 50%;
-    height: 100vh;
+    min-height: 100vh;
     background: ${({ theme }) => theme.colors.primary};
 
     display: none;
@@ -29,12 +32,12 @@ export const Container = styled.div`
     }
 
     > .image {
-      width: 70%;
+      width: 60%;
     }
   }
 
-  main {
-    padding: 40px 0 57px;
+  > main {
+    padding: 40px 0;
 
     width: 100%;
     min-height: 100vh;
@@ -46,7 +49,6 @@ export const Container = styled.div`
 
     ${({ theme }) => theme.media.lg} {
       width: 50%;
-      height: 100vh;
     }
 
     p {

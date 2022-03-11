@@ -8,7 +8,7 @@ export const Container = styled.div`
 
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: stretch;
 
   ${({ theme }) => theme.media.lg} {
     flex-direction: row;
@@ -34,7 +34,6 @@ export const Container = styled.div`
     padding: 71px 0 calc(30vw + 30px);
 
     flex: 1;
-    width: 100%;
     background: ${({ theme }) => theme.colors.primary};
 
     display: flex;
@@ -43,20 +42,22 @@ export const Container = styled.div`
     justify-content: center;
 
     ${({ theme }) => theme.media.lg} {
-      padding: 0;
+      padding: 40px 0;
 
       width: 50%;
-      height: 100vh;
+      min-height: 100vh;
     }
 
     > .sentence {
+      margin: 0 0 30px;
+
       ${({ theme }) => theme.media.lg} {
         display: none;
       }
     }
 
     > .logo {
-      margin: 30px 0 18px;
+      margin: 0 0 18px;
     }
 
     > a {
@@ -71,8 +72,7 @@ export const Container = styled.div`
     position: relative;
 
     background: ${({ theme }) => theme.colors.dark};
-    width: 100%;
-    height: 50vw;
+    min-height: 50vw;
 
     display: flex;
     flex-direction: column;
@@ -80,8 +80,10 @@ export const Container = styled.div`
     justify-content: center;
 
     ${({ theme }) => theme.media.lg} {
+      padding: 40px 0;
+
       width: 50%;
-      height: 100vh;
+      min-height: 100vh;
     }
 
     > .sentence {
