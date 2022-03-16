@@ -3,7 +3,7 @@ import React from 'react'
 import { Container, Title, Content } from './styles'
 import Sidebar from '../Sidebar'
 
-const PageBase = ({ title = 'Principal', content }) => (
+const PageBase = ({ title, content }) => (
   <Container>
     <Sidebar />
     <Title>

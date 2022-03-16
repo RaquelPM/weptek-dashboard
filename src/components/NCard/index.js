@@ -6,12 +6,12 @@ import { Container, Top, Content } from './styles.js'
 
 import { AiOutlinePlusCircle, AiOutlineMinusCircle } from 'react-icons/ai'
 
-const NCard = ({ title = 'Gabriel Luciano Silva', content }) => {
+const NCard = ({ title = 'Gabriel Luciano Silva', titleSize, content }) => {
   const [open, setOpen] = useState(false)
   const cardClose = useOutsideClick(() => setOpen(false))
 
   return (
-    <Container ref={cardClose} open={open}>
+    <Container titleSize={titleSize} ref={cardClose} open={open}>
       <Top>
         {!open && (
           <AiOutlinePlusCircle

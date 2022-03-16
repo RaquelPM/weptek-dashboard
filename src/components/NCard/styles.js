@@ -3,13 +3,18 @@ import styled from 'styled-components'
 export const Container = styled.div`
   width: 100%;
   overflow: hidden;
-  max-height: ${({ open }) => (open ? '100vh' : '46px')};
+  max-height: ${({ open, titleSize }) =>
+    open ? '100vh' : titleSize ? `${titleSize}px` : '46px'};
   background: white;
   border-radius: 20px;
 
   padding: 13px 20px 16px 20px;
 
   transition: all 0.7s;
+
+  @media only screen and (min-width: 600px) {
+    max-height: ${({ open }) => (open ? '100vh' : '46px')};
+  }
 `
 
 export const Top = styled.div`
@@ -25,6 +30,8 @@ export const Top = styled.div`
 
   .icon {
     color: ${({ theme }) => theme.colors.primary};
+    width: 30px;
+    cursor: pointer;
   }
 `
 export const Content = styled.div`

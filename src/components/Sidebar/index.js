@@ -18,7 +18,7 @@ import {
   FiMapPin,
 } from 'react-icons/fi'
 import { CgArrowsExchange } from 'react-icons/cg'
-import { MdAddRoad } from 'react-icons/md'
+// import { MdAddRoad } from 'react-icons/md'
 import { BsPencil } from 'react-icons/bs'
 
 import { useOutsideClick } from '~/hooks'
@@ -106,18 +106,18 @@ const Sidebar = () => {
           <NSidebarItem
             label="Rotas"
             icon={<CgArrowsExchange className="icon" />}
-            route="/perfil"
+            route="/rotas"
           />
           <NSidebarItem
             label="Bairros"
             icon={<FiMapPin className="icon" />}
             route="/perfil"
           />
-          <NSidebarItem
+          {/* <NSidebarItem
             label="Endereços"
             icon={<MdAddRoad className="icon" />}
             route="/perfil"
-          />
+          /> */}
         </SidebarItem>
         {/*
         <NSidebarItem

@@ -26,7 +26,7 @@ export const Content = styled.div`
 export const Title = styled.div`
   .title {
     font-size: 32px;
-    line-height: 20px;
+    line-height: 28px;
   }
   padding-bottom: 5px;
   border-bottom: 1px solid white;

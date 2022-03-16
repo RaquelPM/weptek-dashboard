@@ -2,14 +2,12 @@ import styled from 'styled-components'
 
 export const Container = styled.div`
   display: flex;
-  flex-direction: column;
+  align-items: center;
 
-  > .input {
+  input {
     padding: 0 14px;
-
-    width: ${({ width }) => (width ? '' : 'calc(100vw - 36px')});
-    max-width: 380px;
-    min-height: 50px;
+    max-width: 100px;
+    height: 50px;
     border: 1px solid
       ${({ theme, error, light }) => {
         if (error) {
@@ -18,7 +16,7 @@ export const Container = styled.div`
 
         return light ? 'white' : theme.colors.dark
       }};
-    border-radius: 10px;
+    border-radius: 20px;
     background: ${({ theme, light }) => (light ? 'white' : theme.colors.dark)};
 
     color: ${({ theme, error, light }) => {
@@ -39,14 +37,5 @@ export const Container = styled.div`
     &:disabled {
       opacity: 0.8;
     }
-  }
-
-  > .error {
-    ${({ error }) => error && 'margin: 3px 0;'}
-
-    height: ${({ error }) => (error ? '10px' : 0)};
-
-    color: ${({ theme }) => theme.colors.red};
-    font-size: 12px;
   }
 `
