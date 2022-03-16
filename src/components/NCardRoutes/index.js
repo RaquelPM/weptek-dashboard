@@ -8,9 +8,18 @@ import { CgArrowsExchangeAlt } from 'react-icons/cg'
 const NCardRoutes = () => {
   const [time, setTime] = useState()
   const [edit, setEdit] = useState(false)
-  const [status, setStatus] = useState(false)
+  const [status] = useState(false)
+  const [modal, setModal] = useState(false)
+
+  const onCancel = () => {
+    //
+    setModal(false)
+    // setStatus(!status)
+  }
   return (
     <NCard
+      modal={modal}
+      onCancel={() => onCancel()}
       title="Rota 1 - NOME DO BAIRRO 1 - NOME DO BAIRRO 2"
       titleSize={56}
       content={
@@ -28,7 +37,7 @@ const NCardRoutes = () => {
           <div className="div_infos">
             <div className="input_div">
               <p>Preço</p>
-              <NInput disabled={!edit} value="R$:" className="input" />
+              <NInput disabled={!edit} defaultValue="R$:" className="input" />
             </div>
             <div className="div_time">
               <p>Tempo estimado de viagem:</p>
@@ -65,7 +74,7 @@ const NCardRoutes = () => {
                 type="button"
                 color="red"
                 label="Desativar"
-                onClick={() => setStatus(false)}
+                onClick={() => setModal(false)}
               />
             )}
             {!status && (
@@ -73,7 +82,7 @@ const NCardRoutes = () => {
                 type="button"
                 color="green"
                 label="Ativar"
-                onClick={() => setStatus(true)}
+                onClick={() => setModal(true)}
               />
             )}
           </div>
