@@ -1,7 +1,7 @@
 import React from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
-import { Principal, Drivers, ConfigRoutes } from '~/pages'
+import { Principal, Drivers, ConfigRoutes, ConfigDistricts } from '~/pages'
 import { Login, Register } from '~/pages/Auth'
 
 const Rotas = () => {
@@ -11,6 +11,7 @@ const Rotas = () => {
         <Route path="/home" element={<Principal />} />
         <Route path="*" element={<Drivers />} />
         <Route path="/rotas" element={<ConfigRoutes />} />
+        <Route path="/bairros" element={<ConfigDistricts />} />
         <Route path="/login" element={<Login />} />
         <Route path="/cadastro" element={<Register />} />
       </Routes>

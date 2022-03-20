@@ -14,6 +14,8 @@ const Drivers = () => (
         </div>
 
         <NCardRoutes />
+        <NCardRoutes />
+        <NCardRoutes />
       </Container>
     }
   ></PageBase>

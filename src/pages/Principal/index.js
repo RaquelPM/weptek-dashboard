@@ -42,7 +42,7 @@ const Principal = () => (
           <div className="input">
             <p>Sua taxa:</p>
             <div>
-              <input value="20%" />
+              <input defaultValue="20%" />
               <BsPencil size={15} />
             </div>
           </div>

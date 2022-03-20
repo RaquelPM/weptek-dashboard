@@ -15,6 +15,22 @@ export const Container = styled.div`
   @media only screen and (min-width: 600px) {
     max-height: ${({ open }) => (open ? '100vh' : '46px')};
   }
+
+  .btns {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+
+    button {
+      width: 200px;
+    }
+    @media only screen and (min-width: 700px) {
+      flex-direction: row;
+    }
+  }
 `
 
 export const Top = styled.div`

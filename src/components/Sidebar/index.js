@@ -39,13 +39,13 @@ const Sidebar = () => {
       <ContainerTop>
         <FaBars size={24} onClick={() => setClose(true)} className="icon_sid" />
 
-        <input className="title" value="Weptek" />
+        <input className="title" defaultValue="Weptek" />
         <BsPencil className="icon" size={15} />
       </ContainerTop>
       <Sombra close={close} />
       <Sidbar ref={sidebar} close={close}>
         <div className="title_div">
-          <input className="title" value="Weptek" />
+          <input className="title" defaultValue="Weptek" />
           <BsPencil className="icon" size={15} />
         </div>
 
@@ -111,7 +111,7 @@ const Sidebar = () => {
           <NSidebarItem
             label="Bairros"
             icon={<FiMapPin className="icon" />}
-            route="/perfil"
+            route="/bairros"
           />
           {/* <NSidebarItem
             label="Endereços"

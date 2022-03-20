@@ -14,11 +14,20 @@ const NCardDriver = ({ name = 'Adisson Tejo da Costa' }) => {
   })
 
   const [edit, setEdit] = useState(false)
-  const [status, setStatus] = useState(false)
+  const [status] = useState(false)
+  const [modal, setModal] = useState(false)
+
+  const onCancel = () => {
+    //
+    setModal(false)
+    // setStatus(!status)
+  }
 
   return (
     <NCard
       title={name}
+      modal={modal}
+      onCancel={() => onCancel()}
       content={
         <Container
           onSubmit={handleSubmit((data) => {
@@ -105,7 +114,7 @@ const NCardDriver = ({ name = 'Adisson Tejo da Costa' }) => {
                 type="button"
                 color="red"
                 label="Desativar"
-                onClick={() => setStatus(false)}
+                onClick={() => setModal(true)}
               />
             )}
             {!status && (
@@ -113,7 +122,7 @@ const NCardDriver = ({ name = 'Adisson Tejo da Costa' }) => {
                 type="button"
                 color="green"
                 label="Ativar"
-                onClick={() => setStatus(true)}
+                onClick={() => setModal(true)}
               />
             )}
           </div>

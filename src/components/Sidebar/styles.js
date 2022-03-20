@@ -98,7 +98,7 @@ export const Sidbar = styled.div`
 `
 
 export const SidebarItem = styled.div`
-  height: ${({ close }) => (close ? '170px' : '0px')};
+  height: ${({ close }) => (close ? '120px' : '0px')};
   overflow: hidden;
 `
 
