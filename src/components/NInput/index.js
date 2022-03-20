@@ -7,7 +7,7 @@ const NInput = ({ error, light, width, mask, ...rest }, ref) => {
   return (
     <Container width={width} error={error} light={light}>
       {mask ? (
-        <InputMask {...rest} className="input" ref={ref} />
+        <InputMask {...rest} mask={mask} className="input" ref={ref} />
       ) : (
         <input {...rest} className="input" ref={ref} />
       )}
