@@ -11,8 +11,8 @@ export const Container = styled.div`
     max-width: 380px;
     min-height: 50px;
     border: 1px solid
-      ${({ theme, error, light }) => {
-        if (error) {
+      ${({ theme, error, errorOutline, light }) => {
+        if (error || errorOutline) {
           return '#FA6C6C'
         }
 
@@ -21,8 +21,8 @@ export const Container = styled.div`
     border-radius: 10px;
     background: ${({ theme, light }) => (light ? 'white' : theme.colors.dark)};
 
-    color: ${({ theme, error, light }) => {
-      if (error) {
+    color: ${({ theme, error, errorOutline, light }) => {
+      if (error || errorOutline) {
         return '#FA6C6C'
       }
 

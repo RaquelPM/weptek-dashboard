@@ -39,7 +39,10 @@ export const schema = object({
     .matches(/\d{3}.\d{3}.\d{3}-\d{2}/, 'CPF inválido!'),
   password: string()
     .required('Preencha esse campo!')
-    .min(8, 'Senha muito curta!'),
+    .min(8, 'Senha muito curta!')
+    .matches(/[A-Z]/, 'Adicione uma letra maiúscula!')
+    .matches(/[a-z]/, 'Adicione uma letra minúscula!')
+    .matches(/[0-9]/, 'Adicione um número!'),
   passwordMatch: string()
     .required('Preencha esse campo!')
     .oneOf([ref('password'), null], 'As senhas são diferentes!'),

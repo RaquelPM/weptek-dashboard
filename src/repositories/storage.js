@@ -1,6 +1,4 @@
-import { getDomain } from '~/utils'
-
-const getKey = (key) => `${getDomain()}@${key}`
+const getKey = (key) => `dashborad@${key}`
 
 const storage = {
   ...localStorage,

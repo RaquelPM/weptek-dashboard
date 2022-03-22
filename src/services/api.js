@@ -50,21 +50,21 @@ const base = axios.create({ baseURL: process.env.REACT_APP_API_URL })
 const admin = axios.create({
   baseURL: `${process.env.REACT_APP_API_URL}/admin`,
   headers: {
-    'X-Chevette-Key': 'c68686e2-d818-4abd-985a-29464426c69b',
+    'X-Chevette-Key': process.env.REACT_APP_API_KEY,
   },
 })
 
 const api = axios.create({
   baseURL: `${process.env.REACT_APP_API_URL}/apps`,
   headers: {
-    'X-Chevette-Key': 'c68686e2-d818-4abd-985a-29464426c69b',
+    'X-Chevette-Key': process.env.REACT_APP_API_KEY,
   },
 })
 
 const apiForm = axios.create({
   baseURL: `${process.env.REACT_APP_API_URL}/apps`,
   headers: {
-    'X-Chevette-Key': 'c68686e2-d818-4abd-985a-29464426c69b',
+    'X-Chevette-Key': process.env.REACT_APP_API_KEY,
     'Content-Type': 'multipart/form-data',
   },
 })
