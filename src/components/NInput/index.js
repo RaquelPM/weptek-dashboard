@@ -3,7 +3,10 @@ import InputMask from 'react-input-mask'
 
 import { Container } from './styles'
 
-const NInput = ({ error, errorOutline, light, width, mask, ...rest }, ref) => {
+const NInput = (
+  { error, errorOutline, light, width, mask, placeholder, ...rest },
+  ref
+) => {
   return (
     <Container
       width={width}
@@ -12,9 +15,20 @@ const NInput = ({ error, errorOutline, light, width, mask, ...rest }, ref) => {
       light={light}
     >
       {mask ? (
-        <InputMask {...rest} mask={mask} className="input" ref={ref} />
+        <InputMask
+          {...rest}
+          mask={mask}
+          className="input"
+          ref={ref}
+          placeholder={placeholder}
+        />
       ) : (
-        <input {...rest} className="input" ref={ref} />
+        <input
+          {...rest}
+          className="input"
+          ref={ref}
+          placeholder={placeholder}
+        />
       )}
       <p className="error">{error}</p>
     </Container>

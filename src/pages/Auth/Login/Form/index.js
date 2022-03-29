@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 
 import { NButton, NInput } from '~/components'
 import { useApi } from '~/hooks'
+import { setAppId } from '~/repositories/app'
 import { setAuth } from '~/repositories/auth'
 import { login } from '~/services/auth'
 
@@ -21,6 +22,7 @@ const Form = () => {
       () => login(data),
       ({ data }) => {
         setAuth(data.credential)
+        setAppId(data.app.id)
 
         navigate('/')
       },

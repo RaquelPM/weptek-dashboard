@@ -12,10 +12,10 @@ const Register = () => (
         O seu cadastro inicia uma nova jornada rumo a sua independência
         financeira!
       </p>
-      <img className="image" src={image} alt="image" />
+      <img className="image" src={image} alt="image_aa" />
     </aside>
     <main>
-      <img className="image" src={image} alt="image" />
+      <img className="image" src={image} alt="image_aa" />
       <p className="title">
         Cadastre-se para criar o<br /> seu aplicativo!
       </p>

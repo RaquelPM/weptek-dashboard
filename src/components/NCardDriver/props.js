@@ -2,51 +2,46 @@ import { object, string } from 'yup'
 
 export const fields = {
   name: {
-    placeholder: 'Nome:',
     label: 'Nome:',
     type: 'text',
   },
   email: {
-    placeholder: 'Email:',
     label: 'Email:',
     type: 'email',
   },
   phone: {
-    placeholder: 'Telefone:',
     label: 'Telefone:',
     type: 'text',
     mask: '(99) 99999-9999',
   },
+  pix: {
+    label: 'Pix:',
+    type: 'text',
+  },
   password: {
-    placeholder: 'Senha:',
     label: 'Senha:',
     type: 'password',
   },
   carColor: {
     type: 'text',
     label: 'Cor do seu veículo:',
-    placeholder: 'Insira a cor do carro',
   },
   carYear: {
     mask: '9999',
-    label: 'Ano do seu veiculo:',
-    placeholder: 'Insira o ano do seu carro',
+    label: 'Ano do seu veículo:',
   },
   carModel: {
     type: 'text',
     label: 'Modelo do veículo:',
-    placeholder: 'Insira o modelo do seu veículo',
   },
   licensePlate: {
     type: 'text',
     mask: 'aaa-****',
     label: 'Placa do veículo:',
-    placeholder: 'Insira a placa do seu veículo',
   },
   carBrand: {
     type: 'text',
     label: 'Marca do veículo:',
-    placeholder: 'Insira a marca do seu veículo',
   },
 }
 
