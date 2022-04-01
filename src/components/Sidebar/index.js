@@ -22,6 +22,7 @@ import { CgArrowsExchange } from 'react-icons/cg'
 import { BsPencil } from 'react-icons/bs'
 
 import { useOutsideClick } from '~/hooks'
+import { removeAuth } from '~/repositories/auth'
 
 import { Container, Sidbar, Sombra, ContainerTop, SidebarItem } from './styles'
 import NSidebarItem from '../NSidebarItem'
@@ -129,6 +130,11 @@ const Sidebar = () => {
         <NSidebarItem
           label="Sair"
           icon={<AiOutlineImport className="icon" />}
+          onClick={() => {
+            removeAuth()
+
+            window.location.reload()
+          }}
         />
       </Sidbar>
     </Container>

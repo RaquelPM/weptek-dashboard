@@ -1,14 +1,16 @@
-import { useApiEffect } from '~/hooks'
+import { useApiEffect, useAuth } from '~/hooks'
 import { updateLicensedData } from '~/services/licenseds'
 
 const Loading = ({ setLoading }) => {
+  const { setUser } = useAuth()
+
   useApiEffect(
     () => updateLicensedData({}),
-    (response) => {
-      console.log(response)
-    },
+    (response) => setUser(response.data),
     () => setLoading(false)
   )
 
   return null
 }
+
+export default Loading

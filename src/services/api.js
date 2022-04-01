@@ -11,10 +11,15 @@ import {
 const { REACT_APP_API_URL: baseURL } = process.env
 
 const accessTokenInterceptor = (config) => {
-  const appId = getAppId()
   const { accessToken } = getAuth()
 
   config.headers.Authorization = `Bearer ${accessToken}`
+
+  return config
+}
+
+const baseURLInterceptor = (config) => {
+  const appId = getAppId()
 
   config.baseURL = `${config.baseURL}/${appId}`
 
@@ -69,9 +74,16 @@ const apiForm = axios.create({
   },
 })
 
+admin.interceptors.request.use(accessTokenInterceptor)
+
 api.interceptors.request.use(accessTokenInterceptor)
 
 apiForm.interceptors.request.use(accessTokenInterceptor)
+
+admin.interceptors.response.use(
+  (response) => response,
+  refreshTokenInterceptor(api)
+)
 
 api.interceptors.response.use(
   (response) => response,
@@ -82,5 +94,9 @@ apiForm.interceptors.response.use(
   (response) => response,
   refreshTokenInterceptor(apiForm)
 )
+
+api.interceptors.request.use(baseURLInterceptor)
+
+apiForm.interceptors.request.use(baseURLInterceptor)
 
 export { baseURL, base, admin, api, apiForm }

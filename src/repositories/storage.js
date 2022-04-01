@@ -1,4 +1,4 @@
-const getKey = (key) => `dashborad@${key}`
+const getKey = (key) => `dashboard@${key}`
 
 const storage = {
   ...localStorage,

@@ -1,6 +1,5 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
-import { useNavigate } from 'react-router-dom'
 
 import { NButton, NInput } from '~/components'
 import { useApi } from '~/hooks'
@@ -11,22 +10,22 @@ import { login } from '~/services/auth'
 import { Container } from './styles'
 
 const Form = () => {
-  const navigate = useNavigate()
-
   const { request } = useApi()
 
   const { register, handleSubmit, setError, formState } = useForm()
 
   const onSubmit = (data) => {
+    data.phone = data.phone.replace(/\D/g, '')
+
     request(
       () => login(data),
       ({ data }) => {
         setAuth(data.credential)
         setAppId(data.app.id)
 
-        navigate('/')
+        window.location.reload()
       },
-      () => setError('password', { message: 'Email ou senha incorretos!' })
+      () => setError('password', { message: 'Telefone ou senha incorretos!' })
     )
   }
 
@@ -34,10 +33,12 @@ const Form = () => {
     <Container onSubmit={handleSubmit(onSubmit)}>
       <NInput
         light
-        placeholder="Email"
-        type="email"
-        {...register('email')}
+        placeholder="Telefone"
+        type="phone"
+        {...register('phone')}
+        error={formState.errors.phone?.message}
         errorOutline={formState.errors.password}
+        mask="(99) 99999-9999"
       />
       <NInput
         light

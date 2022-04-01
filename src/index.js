@@ -1,17 +1,19 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-
-import { Global, theme } from './styles'
-
 import { ThemeProvider } from 'styled-components'
 
-import Rotas from './routes'
+import ContextProvider from './contexts'
+import { Global, theme } from './styles'
+
+import Routes from './routes'
 
 ReactDOM.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
-      <Global />
-      <Rotas />
+      <ContextProvider>
+        <Global />
+        <Routes />
+      </ContextProvider>
     </ThemeProvider>
   </React.StrictMode>,
   document.getElementById('root')

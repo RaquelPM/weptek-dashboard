@@ -1,22 +1,23 @@
-import React from 'react'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import React, { useState } from 'react'
+import { BrowserRouter } from 'react-router-dom'
 
-import { Principal, Drivers, ConfigRoutes, ConfigDistricts } from '~/pages'
-import { Login, Register } from '~/pages/Auth'
+import { useAuth } from '~/hooks'
 
-const Rotas = () => {
+import App from './app'
+import Auth from './auth'
+import Loading from './loading'
+
+const Routes = () => {
+  const { user } = useAuth()
+  const [loading, setLoading] = useState(true)
+
+  const Route = user ? App : Auth
+
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/home" element={<Principal />} />
-        <Route path="*" element={<Drivers />} />
-        <Route path="/rotas" element={<ConfigRoutes />} />
-        <Route path="/bairros" element={<ConfigDistricts />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/cadastro" element={<Register />} />
-      </Routes>
+      {loading && !user ? <Loading setLoading={setLoading} /> : <Route />}
     </BrowserRouter>
   )
 }
 
-export default Rotas
+export default Routes
