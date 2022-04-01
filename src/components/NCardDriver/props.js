@@ -18,17 +18,17 @@ export const fields = {
     label: 'Pix:',
     type: 'text',
   },
-  password: {
-    label: 'Senha:',
-    type: 'password',
-  },
+  // password: {
+  //   label: 'Senha:',
+  //   type: 'password',
+  // },
   carColor: {
     type: 'text',
-    label: 'Cor do seu veículo:',
+    label: 'Cor do veículo:',
   },
   carYear: {
     mask: '9999',
-    label: 'Ano do seu veículo:',
+    label: 'Ano do veículo:',
   },
   carModel: {
     type: 'text',
@@ -46,17 +46,15 @@ export const fields = {
 }
 
 export const schema = object({
-  name: string().required('Preencha esse campo!').min(4, 'Nome muito curto!'),
-  email: string().required('Preencha esse campo!').email('Email inválido!'),
-  phone: string()
-    .required('Preencha esse campo!')
-    .matches(/\(\d{2}\) \d{5}-\d{4}/g, 'Telefone inválido!'),
-  password: string()
-    .required('Preencha esse campo!')
-    .min(8, 'Senha muito curta!'),
-  carColor: string().required('Preencha esse campo!'),
-  carYear: string().required('Preencha esse campo!'),
-  carModel: string().required('Preencha esse campo!'),
-  licensePlate: string().required('Preencha esse campo!'),
-  carBrand: string().required('Preencha esse campo!'),
-}).required()
+  name: string(),
+  email: string().email('Email inválido!'),
+  phone: string(),
+  // password: string()
+  //
+  //   .min(8, 'Senha muito curta!'),
+  carColor: string(),
+  carYear: string(),
+  carModel: string(),
+  licensePlate: string(),
+  carBrand: string(),
+})

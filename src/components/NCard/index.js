@@ -13,6 +13,7 @@ const NCard = ({
   content,
   modal,
   onCancel,
+  onConfirm,
 }) => {
   const [open, setOpen] = useState(false)
 
@@ -26,7 +27,7 @@ const NCard = ({
         onCancel={() => onCancel()}
         confirmLabel="Sim, confimar"
         cancelLabel="Não, cancelar"
-        onConfirm={() => onCancel()}
+        onConfirm={() => onConfirm()}
         onClose={() => onCancel()}
       />
       <Top>

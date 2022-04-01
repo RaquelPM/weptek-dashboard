@@ -6,11 +6,18 @@ import { NButton, NInput, NCard, NPicture } from '~/components'
 
 import { Container } from './styles'
 import { fields, schema } from './props'
-import { getDriversId } from '~/services/drivers'
-import { useApiEffect } from '~/hooks'
+import {
+  disableDriver,
+  enableDriver,
+  getDriversId,
+  setDriverForceForm,
+} from '~/services/drivers'
+import { useApi, useApiEffect } from '~/hooks'
 
 const NCardDriver = ({ id }) => {
   const [driver, setDriver] = useState({})
+
+  const { request } = useApi()
 
   const { register, handleSubmit, formState, control } = useForm({
     resolver: yupResolver(schema),
@@ -21,8 +28,19 @@ const NCardDriver = ({ id }) => {
     () => getDriversId(id),
     (response) => {
       setDriver(response.data)
+      console.log(response.data)
     }
   )
+
+  const attDriver = () => {
+    request(
+      () => getDriversId(id),
+      (response) => {
+        setDriver(response.data)
+        console.log(response.data)
+      }
+    )
+  }
 
   const [edit, setEdit] = useState(false)
   const [modal, setModal] = useState(false)
@@ -30,8 +48,8 @@ const NCardDriver = ({ id }) => {
   function placeholder(type) {
     if (driver) {
       if (driver.car) {
-        if (type === 'Cor do seu veículo:') return driver.car.color
-        if (type === 'Ano do seu veículo:') return driver.car.year
+        if (type === 'Cor do veículo:') return driver.car.color
+        if (type === 'Ano do veículo:') return driver.car.year
         if (type === 'Modelo do veículo:') return driver.car.model
         if (type === 'Marca do veículo:') return driver.car.brand
         if (driver.car.licensePlate) {
@@ -51,18 +69,46 @@ const NCardDriver = ({ id }) => {
     // setStatus(!status)
   }
 
+  const changeStatus = () => {
+    const service = driver.active ? disableDriver : enableDriver
+    request(
+      () => service(id),
+      () => attDriver(),
+      () => alert('error')
+    )
+    setModal(false)
+  }
+
+  const submit = (response) => {
+    const data = response
+    if (data.phone) data.phone = data.phone.replace(/\D/g, '')
+    if (data.cpf) data.cpf = data.cpf.replace(/\D/g, '')
+
+    console.log(data)
+
+    const formData = new FormData()
+
+    Object.entries(data).forEach(([key, value]) => {
+      if (value) formData.append(key, value)
+    })
+
+    request(
+      () => setDriverForceForm(id, formData),
+      () => attDriver(),
+      () => alert('error')
+    )
+
+    setEdit(false)
+  }
+
   return (
     <NCard
       title={driver.name}
       modal={modal}
       onCancel={() => onCancel()}
+      onConfirm={() => changeStatus()}
       content={
-        <Container
-          onSubmit={handleSubmit((data) => {
-            console.log(data)
-            setEdit(false)
-          })}
-        >
+        <Container onSubmit={handleSubmit((data) => submit(data))}>
           {Object.entries(fields).map(([key, value]) => (
             <div key={key}>
               <p>{value.label}</p>
@@ -76,11 +122,11 @@ const NCardDriver = ({ id }) => {
             </div>
           ))}
 
-          <p className="label">Insira a foto da placa do seu veículo:</p>
+          <p className="label">Insira a foto da placa do veículo:</p>
           {driver.car && (
             <Controller
               control={control}
-              name="placa"
+              name="licensePlateImage"
               render={({ field }) => (
                 <NPicture
                   id="placa"
@@ -98,7 +144,7 @@ const NCardDriver = ({ id }) => {
           {driver.car && (
             <Controller
               control={control}
-              name="cnh"
+              name="cnhImage"
               render={({ field }) => (
                 <NPicture
                   id="cnh"
@@ -116,7 +162,7 @@ const NCardDriver = ({ id }) => {
           {driver.docImages && (
             <Controller
               control={control}
-              name="identidade"
+              name="identityImage"
               render={({ field }) => (
                 <NPicture
                   id="identidade"
@@ -134,7 +180,7 @@ const NCardDriver = ({ id }) => {
           {driver.docImages && (
             <Controller
               control={control}
-              name="crv"
+              name="crvImage"
               render={({ field }) => (
                 <NPicture
                   id="crv"
@@ -152,7 +198,7 @@ const NCardDriver = ({ id }) => {
           {driver.docImages && (
             <Controller
               control={control}
-              name="crlv"
+              name="crlvImage"
               render={({ field }) => (
                 <NPicture
                   id="crlv"
