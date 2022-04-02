@@ -64,9 +64,7 @@ const NCardDriver = ({ id }) => {
   }
 
   const onCancel = () => {
-    //
     setModal(false)
-    // setStatus(!status)
   }
 
   const changeStatus = () => {

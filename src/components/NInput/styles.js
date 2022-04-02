@@ -7,7 +7,7 @@ export const Container = styled.div`
   > .input {
     padding: 0 14px;
 
-    width: ${({ width }) => (width ? '' : 'calc(100vw - 36px')});
+    width: ${({ width }) => (width ? `` : 'calc(100vw - 36px')});
     max-width: 380px;
     min-height: 50px;
     border: 1px solid

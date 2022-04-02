@@ -2,12 +2,10 @@ import { object, string } from 'yup'
 
 export const fields = {
   name: {
-    placeholder: 'Nome:',
     label: 'Nome:',
     type: 'text',
   },
   city: {
-    placeholder: 'Cidade:',
     label: 'Cidade:',
     type: 'text',
   },

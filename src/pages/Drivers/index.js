@@ -19,7 +19,7 @@ const Drivers = () => {
 
     setPages(data.pages)
 
-    setSearch(' ')
+    setSearch('')
   }
 
   useApiEffect(
