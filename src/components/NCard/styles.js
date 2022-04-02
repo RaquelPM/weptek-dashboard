@@ -3,6 +3,7 @@ import styled from 'styled-components'
 export const Container = styled.div`
   width: 100%;
   overflow: hidden;
+  display: ${({ title }) => (title ? '' : 'none')};
   max-height: ${({ open, titleSize }) =>
     open ? '100vh' : titleSize ? `${titleSize}px` : '46px'};
   background: white;

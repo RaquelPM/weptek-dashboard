@@ -17,17 +17,19 @@ const ConfigDistricts = () => {
   const [modal, setModal] = useState(false)
   const [search, setSearch] = useState('')
   const [pages, setPages] = useState([])
-  const [page, setPage] = useState(1)
+  const [page, setPage] = useState(0)
 
   const { request } = useApi()
 
   useApiEffect(
-    () => getDistricts(page),
-    (response) => attData(response.data)
+    () => getDistricts(3),
+    (response) => attData(response.data),
+    (response) => console.log(response)
   )
 
   const attData = (data) => {
     setDistricts(data.content)
+    console.log(data)
 
     setPages(data.pages)
 
@@ -36,7 +38,7 @@ const ConfigDistricts = () => {
 
   const attDistricts = () => {
     request(
-      () => getDistricts(0),
+      () => getDistricts(page),
       (response) => attData(response.data),
       () => alert('errorAtt')
     )
@@ -53,7 +55,10 @@ const ConfigDistricts = () => {
   const createDistrict = (data) => {
     request(
       () => createDistricts(data),
-      () => attDistricts(),
+      (response) => {
+        attDistricts()
+        console.log(response)
+      },
       () => alert('error')
     )
 

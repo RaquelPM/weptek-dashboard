@@ -7,20 +7,13 @@ import { Container, Top, Content } from './styles.js'
 
 import { AiOutlinePlusCircle, AiOutlineMinusCircle } from 'react-icons/ai'
 
-const NCard = ({
-  title = 'Gabriel Luciano Silva',
-  titleSize,
-  content,
-  modal,
-  onCancel,
-  onConfirm,
-}) => {
+const NCard = ({ title, titleSize, content, modal, onCancel, onConfirm }) => {
   const [open, setOpen] = useState(false)
 
   const cardClose = useOutsideClick(() => setOpen(false))
 
   return (
-    <Container titleSize={titleSize} ref={cardClose} open={open}>
+    <Container title={title} titleSize={titleSize} ref={cardClose} open={open}>
       <NModalSure
         visible={modal}
         label="Você tem certeza?"
