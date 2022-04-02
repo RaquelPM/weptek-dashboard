@@ -17,19 +17,19 @@ const ConfigDistricts = () => {
   const [modal, setModal] = useState(false)
   const [search, setSearch] = useState('')
   const [pages, setPages] = useState([])
-  const [page, setPage] = useState(0)
+  const [page, setPage] = useState(1)
 
   const { request } = useApi()
 
   useApiEffect(
-    () => getDistricts(3),
+    () => getDistricts(page),
     (response) => attData(response.data),
     (response) => console.log(response)
   )
 
   const attData = (data) => {
     setDistricts(data.content)
-    console.log(data)
+    setDistrictsList(data.content)
 
     setPages(data.pages)
 
@@ -55,10 +55,7 @@ const ConfigDistricts = () => {
   const createDistrict = (data) => {
     request(
       () => createDistricts(data),
-      (response) => {
-        attDistricts()
-        console.log(response)
-      },
+      (response) => attDistricts(),
       () => alert('error')
     )
 
@@ -78,7 +75,7 @@ const ConfigDistricts = () => {
     }
   }, [search, districts])
 
-  const districtsCards = districtsList.map((district, i) => (
+  let districtsCards = districtsList.map((district, i) => (
     <NCardDistrict key={i} id={district.id} />
   ))
 
@@ -105,9 +102,9 @@ const ConfigDistricts = () => {
             label="Adicione um bairro"
             save={(data) => {
               createDistrict(data)
-              console.log(data)
             }}
           />
+
           {districtsCards}
 
           {pages && pages.total > 1 && (
