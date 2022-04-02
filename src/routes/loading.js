@@ -1,4 +1,5 @@
 import { useApiEffect, useAuth } from '~/hooks'
+import { removeAuth } from '~/repositories/auth'
 import { updateLicensedData } from '~/services/licenseds'
 
 const Loading = ({ setLoading }) => {
@@ -7,7 +8,11 @@ const Loading = ({ setLoading }) => {
   useApiEffect(
     () => updateLicensedData({}),
     (response) => setUser(response.data),
-    () => setLoading(false)
+    () => {
+      removeAuth()
+
+      setLoading(false)
+    }
   )
 
   return null

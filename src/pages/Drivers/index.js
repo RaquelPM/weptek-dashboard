@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 
 import { PageBase, NCardDriver, NSearch } from '~/components'
 import { useApi, useApiEffect } from '~/hooks'
@@ -7,9 +7,7 @@ import { Container } from './styles'
 
 const Drivers = () => {
   const [drivers, setDrivers] = useState([])
-  const [driverList, setDriversList] = useState([])
   const [pages, setPages] = useState([])
-  const [page, setPage] = useState(1)
   const [search, setSearch] = useState('')
 
   const { request } = useApi()
@@ -23,32 +21,26 @@ const Drivers = () => {
   }
 
   useApiEffect(
-    () => getDrivers(page),
+    () => getDrivers(1),
     (response) => attData(response.data)
   )
 
   const changePage = (pageNumber) => {
-    setPage(pageNumber)
     request(
       () => getDrivers(pageNumber),
       (response) => attData(response.data)
     )
   }
 
-  useEffect(() => {
+  const driversList = drivers.map((driver, i) => {
     const regex = new RegExp(search, 'gi')
-    if (search) {
-      const preDrivers = drivers.filter((driver) => driver.name.match(regex))
 
-      setDriversList(preDrivers)
-    } else {
-      setDriversList(drivers)
-    }
-  }, [search, drivers])
-
-  const driversList = driverList.map((driver, i) => (
-    <NCardDriver key={i} id={driver.id} />
-  ))
+    return (
+      driver.name.match(regex) && (
+        <NCardDriver key={`${pages.current}.${i}`} id={driver.id} />
+      )
+    )
+  })
 
   return (
     <PageBase
@@ -69,7 +61,7 @@ const Drivers = () => {
             <div className="div_next">
               {pages.current > 1 && (
                 <button
-                  onClick={() => changePage(page - 1)}
+                  onClick={() => changePage(pages.current - 1)}
                   type="button"
                   className="advanced"
                 >
@@ -78,7 +70,7 @@ const Drivers = () => {
               )}
               {pages.current < pages.total && (
                 <button
-                  onClick={() => changePage(page + 1)}
+                  onClick={() => changePage(pages.current + 1)}
                   type="button"
                   className="advanced"
                 >

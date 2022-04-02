@@ -59,6 +59,8 @@ const NCardDistrict = ({ id }) => {
 
   const submit = (data) => {
     console.log(data)
+    if (!data.city) delete data.city
+    if (!data.name) delete data.name
     request(
       () => setDistrictById(id, data),
       () => attDistrict(),

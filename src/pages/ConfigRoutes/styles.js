@@ -7,6 +7,22 @@ export const Container = styled.div`
   flex-direction: column;
   gap: 25px;
 
+  .div_next {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: ${({ theme }) => theme.colors.primary};
+
+    margin-bottom: 20px;
+
+    gap: 15px;
+
+    .advanced {
+      font-size: 30px;
+    }
+  }
+
   .div_top {
     display: flex;
     flex-direction: column;

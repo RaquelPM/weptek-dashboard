@@ -16,7 +16,10 @@ const NSelector = forwardRef(
     {
       label = '',
       placeholder = '',
-      options = ['Option 1', 'Option 2', 'Option 3', 'Option 4', 'Option 5'],
+      options = [
+        { name: 'Options 1', value: '1' },
+        { name: 'Option 2', value: '2' },
+      ],
       value,
       onChange = () => null,
       disabled,
@@ -61,7 +64,7 @@ const NSelector = forwardRef(
         onClick={() => onChange(option)}
         key={options.indexOf(option)}
       >
-        {option}
+        {option.name}
       </button>
     ))
 
@@ -74,7 +77,7 @@ const NSelector = forwardRef(
           selected={!!value}
           error={error}
         >
-          <p className="option">{value ?? placeholder}</p>
+          <p className="option">{value !== '' ? value : placeholder}</p>
           <IoIosArrowDown size={24} className="icon" />
         </Selected>
         <OptionsList open={open} onClick={() => setOpen(!open)}>
