@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import {
   PageBase,
   NSearch,
@@ -13,16 +13,14 @@ import { Container } from './styles'
 
 const ConfigDistricts = () => {
   const [districts, setDistricts] = useState([])
-  const [districtsList, setDistrictsList] = useState([])
   const [modal, setModal] = useState(false)
   const [search, setSearch] = useState('')
-  const [pages, setPages] = useState([])
-  const [page, setPage] = useState(0)
+  const [pages, setPages] = useState({})
 
   const { request } = useApi()
 
   useApiEffect(
-    () => getDistricts(3),
+    () => getDistricts(1),
     (response) => attData(response.data),
     (response) => console.log(response)
   )
@@ -38,14 +36,13 @@ const ConfigDistricts = () => {
 
   const attDistricts = () => {
     request(
-      () => getDistricts(page),
+      () => getDistricts(pages.current),
       (response) => attData(response.data),
       () => alert('errorAtt')
     )
   }
 
   const changePage = (pageNumber) => {
-    setPage(pageNumber)
     request(
       () => getDistricts(pageNumber),
       (response) => attData(response.data)
@@ -65,22 +62,15 @@ const ConfigDistricts = () => {
     setModal(false)
   }
 
-  useEffect(() => {
+  const districtsCards = districts.map((district, i) => {
     const regex = new RegExp(search, 'gi')
-    if (search) {
-      const preDistricts = districts.filter((district) =>
-        district.name.match(regex)
+
+    return (
+      district.name.match(regex) && (
+        <NCardDistrict key={`${pages.current}.${i}`} id={district.id} />
       )
-
-      setDistrictsList(preDistricts)
-    } else {
-      setDistrictsList(districts)
-    }
-  }, [search, districts])
-
-  const districtsCards = districtsList.map((district, i) => (
-    <NCardDistrict key={i} id={district.id} />
-  ))
+    )
+  })
 
   return (
     <PageBase
@@ -114,7 +104,7 @@ const ConfigDistricts = () => {
             <div className="div_next">
               {pages.current > 1 && (
                 <button
-                  onClick={() => changePage(page - 1)}
+                  onClick={() => changePage(pages.current - 1)}
                   type="button"
                   className="advanced"
                 >
@@ -123,7 +113,7 @@ const ConfigDistricts = () => {
               )}
               {pages.current < pages.total && (
                 <button
-                  onClick={() => changePage(page + 1)}
+                  onClick={() => changePage(pages.current + 1)}
                   type="button"
                   className="advanced"
                 >

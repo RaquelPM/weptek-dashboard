@@ -15,8 +15,8 @@ const Form = () => {
   const { register, handleSubmit, setError, formState } = useForm()
 
   const onSubmit = (data) => {
-    data.phone = data.phone.replace(/\D/g, '')
-    data.phone = `55${data.phone}`
+    // data.phone = data.phone.replace(/\D/g, '')
+    // data.phone = `55${data.phone}`
 
     request(
       () => login(data),
