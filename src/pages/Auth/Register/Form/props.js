@@ -17,6 +17,7 @@ export const fields = {
   cpf: {
     placeholder: 'CPF:',
     type: 'text',
+    mask: '999.999.999-99',
   },
   password: {
     placeholder: 'Senha:',
@@ -25,6 +26,10 @@ export const fields = {
   passwordMatch: {
     placeholder: 'Confirmar senha:',
     type: 'password',
+  },
+  pix: {
+    placeholder: 'Chave PIX (Email, Telefone ou Aleatória)',
+    type: 'text',
   },
 }
 
@@ -46,4 +51,5 @@ export const schema = object({
   passwordMatch: string()
     .required('Preencha esse campo!')
     .oneOf([ref('password'), null], 'As senhas são diferentes!'),
+  pix: string().required('Preencha esse campo!'),
 }).required()

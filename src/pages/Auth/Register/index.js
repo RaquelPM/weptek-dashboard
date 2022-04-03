@@ -4,6 +4,7 @@ import image from '~/assets/register-image.svg'
 
 import { Container } from './styles'
 import Form from './Form'
+import AppForm from './AppForm'
 
 const Register = () => (
   <Container>
@@ -27,5 +28,7 @@ const Register = () => (
     </main>
   </Container>
 )
+
+Register.AppForm = AppForm
 
 export default Register
