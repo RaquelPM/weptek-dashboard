@@ -9,14 +9,6 @@ export const fields = {
     placeholder: 'Domínio:',
     type: 'text',
   },
-  state: {
-    placeholder: 'Estado:',
-    type: 'text',
-  },
-  city: {
-    placeholder: 'Cidade:',
-    type: 'text',
-  },
   tax: {
     placeholder: 'Taxa:',
     type: 'text',

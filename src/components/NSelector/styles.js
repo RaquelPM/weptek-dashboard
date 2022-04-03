@@ -1,22 +1,21 @@
 import styled from 'styled-components'
 
 export const OptionsList = styled.div`
-  padding: ${({ open }) =>
-    open ? '25px 20px 20px 25px' : `0px 20px 0px 25px`};
+  padding: ${({ open }) => (open ? '10px 14px 20px' : `0px 14px 0px`)};
   display: flex;
   position: absolute;
   z-index: ${({ open }) => (open ? '20' : '10')};
-  top: 38px;
+  top: 43px;
   align-items: center;
   flex-direction: column;
 
   width: 100%;
   height: ${({ open }) => (open ? '200px' : `0px`)};
-  overflow: ${({ open }) => (open ? 'auto' : `hidden`)};
+  overflow-y: ${({ open }) => (open ? 'auto' : `hidden`)};
 
   border-width: 0;
-  border-bottom-right-radius: 20px;
-  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
   background: #313131;
   color: white;
 
@@ -28,7 +27,7 @@ export const OptionsList = styled.div`
     margin-top: 20px;
     font-style: normal;
     font-weight: normal;
-    font-size: 16px;
+    font-size: 15px;
     line-height: 18px;
 
     color: #ffffff;
@@ -52,7 +51,7 @@ export const Container = styled.div`
   }
 
   .error {
-    margin: 3px 0 0 16px;
+    margin: 3px 0 0;
 
     height: ${({ error }) => (error ? '10px' : 0)};
 
@@ -62,7 +61,7 @@ export const Container = styled.div`
 `
 
 export const Selected = styled.div`
-  padding: 0 25px;
+  padding: 0 14px;
   display: flex;
   z-index: ${({ open }) => (open ? '21' : '11')};
   align-items: center;
@@ -72,14 +71,14 @@ export const Selected = styled.div`
   height: 50px;
   border: 1px solid
     ${({ theme, error }) => (error ? '#FA6C6C' : theme.colors.dark)};
-  border-radius: 20px;
+  border-radius: 10px;
   background: ${({ theme }) => theme.colors.dark};
   color: white;
 
   .option {
     font-style: normal;
     font-weight: normal;
-    font-size: 16px;
+    font-size: 15px;
     line-height: 18px;
     opacity: 0.7;
 

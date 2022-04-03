@@ -1,12 +1,13 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { useForm } from 'react-hook-form'
+import { Controller, useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 
-import { NButton, NInput } from '~/components'
-import { useApi } from '~/hooks'
+import { NButton, NInput, NSelector } from '~/components'
+import { useApi, useApiEffect } from '~/hooks'
 import { getRegister, setRegister } from '~/repositories/register'
 import { verifyAppData } from '~/services/apps'
+import { getCitiesByState, getStates } from '~/services/locations'
 
 import { Container, Preview } from './styles'
 import { fields, schema } from './props'
@@ -18,16 +19,36 @@ const AppForm = () => {
   const { state } = useLocation()
   const { request } = useApi()
 
-  const { register, handleSubmit, formState, watch } = useForm({
+  const [states, setStates] = useState([])
+  const [cities, setCities] = useState([])
+
+  const { register, handleSubmit, formState, watch, control } = useForm({
     resolver: yupResolver(schema),
     mode: 'all',
   })
 
   const domain = watch('domain')
   const color = watch('color')
+  const UF = watch('state')
+
+  useApiEffect(getStates, (response) =>
+    setStates(
+      response.data.map((item) => ({ name: item.sigla, value: item.sigla }))
+    )
+  )
+
+  useEffect(() => {
+    request(
+      () => getCitiesByState(UF),
+      (response) =>
+        setCities(
+          response.data.map((item) => ({ name: item.nome, value: item.nome }))
+        )
+    )
+  }, [UF])
 
   const onSubmit = (data) => {
-    setRegister({ app: data })
+    setRegister({ ...(save || {}), app: data })
 
     data.tax = Number(data.tax.replace(/\D/g, '')) / 100
 
@@ -63,6 +84,36 @@ const AppForm = () => {
           {...register(key)}
         />
       ))}
+      <Controller
+        control={control}
+        name="state"
+        defaultValue={save?.app?.state || ''}
+        render={({ field, fieldState }) => (
+          <NSelector
+            placeholder="Estado:"
+            options={states}
+            {...field}
+            value={field.value}
+            onChange={(option) => field.onChange(option.name)}
+            error={fieldState.error?.message}
+          />
+        )}
+      />
+      <Controller
+        control={control}
+        name="city"
+        defaultValue={save?.app?.city || ''}
+        render={({ field, fieldState }) => (
+          <NSelector
+            placeholder="Cidade:"
+            options={cities}
+            {...field}
+            value={field.value}
+            onChange={(option) => field.onChange(option.name)}
+            error={fieldState.error?.message}
+          />
+        )}
+      />
       <Preview
         chosenColor={!formState.errors.color && (color || save?.app?.color)}
       >
@@ -70,6 +121,7 @@ const AppForm = () => {
         <p>
           Domínio:{' '}
           {!formState.errors.domain &&
+            (domain || save?.app?.domain) &&
             `${domain || save?.app?.domain}.weptek.xyz`}
         </p>
         <p>Cor:</p>

@@ -28,9 +28,9 @@ const Form = () => {
 
     delete data.passwordMatch
 
-    const { password, ...save } = data
+    const { password, ...saveData } = data
 
-    setRegister({ licensed: save })
+    setRegister({ ...(save || {}), licensed: saveData })
 
     request(
       () => verifyLicensedRegister(data),
@@ -45,7 +45,7 @@ const Form = () => {
         <NInput
           key={key}
           error={formState.errors[key]?.message}
-          defaultValue={save?.licensed[key]}
+          defaultValue={save?.licensed?.[key]}
           {...value}
           {...register(key)}
         />

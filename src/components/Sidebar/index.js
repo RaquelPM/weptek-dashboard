@@ -20,6 +20,7 @@ import {
 import { CgArrowsExchange } from 'react-icons/cg'
 // import { MdAddRoad } from 'react-icons/md'
 import { BsPencil } from 'react-icons/bs'
+import { useNavigate } from 'react-router-dom'
 
 import { useOutsideClick } from '~/hooks'
 import { removeAuth } from '~/repositories/auth'
@@ -28,6 +29,8 @@ import { Container, Sidbar, Sombra, ContainerTop, SidebarItem } from './styles'
 import NSidebarItem from '../NSidebarItem'
 
 const Sidebar = () => {
+  const navigate = useNavigate()
+
   const [close, setClose] = useState(false)
   // const [viagens, setViagens] = useState(false)
   const [config, setConfig] = useState(false)
@@ -132,6 +135,8 @@ const Sidebar = () => {
           icon={<AiOutlineImport className="icon" />}
           onClick={() => {
             removeAuth()
+
+            navigate('/')
 
             window.location.reload()
           }}
