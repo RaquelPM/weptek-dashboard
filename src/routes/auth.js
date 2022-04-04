@@ -13,6 +13,9 @@ const Auth = () => {
       {state?.licensed && (
         <Route path="/cadastro/app" element={<Register.AppForm />} />
       )}
+      {state?.app && (
+        <Route path="/cadastro/chave" element={<Register.Authorization />} />
+      )}
     </Routes>
   )
 }
