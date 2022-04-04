@@ -40,7 +40,8 @@ const NCardRoutes = ({ id }) => {
   const attRoute = () => {
     request(
       () => getRouteById(id),
-      (response) => attData(response.data)
+      (response) => attData(response.data),
+      () => console.log('error')
     )
   }
 
@@ -51,7 +52,6 @@ const NCardRoutes = ({ id }) => {
   }
 
   const changeStatus = () => {
-    console.log('a')
     const status = route.enabled
     request(
       () => setRouteById(id, { enabled: !status }),
@@ -79,19 +79,19 @@ const NCardRoutes = ({ id }) => {
     cost = Number(Number(cost).toFixed(2))
 
     let data = {
-      boardingDistrictId: district1.id,
-      landingDistrictId: district2.id,
       duration: time ? `00:${time}` : route.duration,
     }
     if (cost) data = { ...data, cost: cost }
+    if (district1 !== route.boardingDistrict)
+      data = { ...data, boardingDistrictId: district1.id }
+    if (district2 !== route.landingDistrict)
+      data = { ...data, landingDistrictId: district2.id }
 
     request(
       () => setRouteById(id, data),
       () => attRoute(),
       () => alert('error')
     )
-
-    console.log(data)
     setEdit(false)
   }
 
