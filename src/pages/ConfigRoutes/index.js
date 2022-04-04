@@ -8,11 +8,12 @@ import {
   NModalAddRoute,
 } from '~/components'
 import { useApi, useApiEffect } from '~/hooks'
-import { createRoute, getRoutes } from '~/services/routes'
+import { createRoute, getRoutes, getRoutesNoLimit } from '~/services/routes'
 import { Container } from './styles'
 
 const Drivers = () => {
   const [routes, setRoutes] = useState([])
+  const [routesList, setRoutesList] = useState([])
   const [modal, setModal] = useState(false)
   const [search, setSearch] = useState('')
   const [pages, setPages] = useState({})
@@ -22,6 +23,10 @@ const Drivers = () => {
   useApiEffect(
     () => getRoutes(1),
     (response) => attData(response.data)
+  )
+
+  useApiEffect(getRoutesNoLimit, (response) =>
+    setRoutesList(response.data.content)
   )
 
   const attData = (data) => {
@@ -57,7 +62,11 @@ const Drivers = () => {
     setModal(false)
   }
 
-  const routesCards = routes.map((route, i) => {
+  const routesCards = routes.map((route, i) => (
+    <NCardRoutes key={`${pages.current}.${i}`} id={route.id} />
+  ))
+
+  const routesListCards = routesList.map((route, i) => {
     const regex = new RegExp(search, 'gi')
 
     return (
@@ -93,9 +102,10 @@ const Drivers = () => {
             }}
           />
 
-          {routesCards}
+          {!search && routesCards}
+          {search && routesListCards}
 
-          {pages && pages.total > 1 && (
+          {pages && pages.total > 1 && !search && (
             <div className="div_next">
               {pages.current > 1 && (
                 <button

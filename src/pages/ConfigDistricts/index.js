@@ -7,12 +7,17 @@ import {
   NModalAddDistrict,
 } from '~/components'
 import { useApi, useApiEffect } from '~/hooks'
-import { createDistricts, getDistricts } from '~/services/districts'
+import {
+  createDistricts,
+  getDistricts,
+  getDistrictsNoLimit,
+} from '~/services/districts'
 
 import { Container } from './styles'
 
 const ConfigDistricts = () => {
   const [districts, setDistricts] = useState([])
+  const [districtList, setDistrictsList] = useState([])
   const [modal, setModal] = useState(false)
   const [search, setSearch] = useState('')
   const [pages, setPages] = useState({})
@@ -21,6 +26,12 @@ const ConfigDistricts = () => {
   useApiEffect(
     () => getDistricts(1),
     (response) => attData(response.data),
+    (response) => console.log(response)
+  )
+
+  useApiEffect(
+    getDistrictsNoLimit,
+    (response) => setDistrictsList(response.data.content),
     (response) => console.log(response)
   )
 
@@ -57,7 +68,11 @@ const ConfigDistricts = () => {
     setModal(false)
   }
 
-  const districtsCards = districts.map((district, i) => {
+  const districtsCards = districts.map((district, i) => (
+    <NCardDistrict key={`${pages.current}.${i}`} id={district.id} />
+  ))
+
+  const districtsListCards = districtList.map((district, i) => {
     const regex = new RegExp(search, 'gi')
 
     return (
@@ -93,9 +108,10 @@ const ConfigDistricts = () => {
             }}
           />
 
-          {districtsCards}
+          {!search && districtsCards}
+          {search && districtsListCards}
 
-          {pages && pages.total > 1 && (
+          {pages && pages.total > 1 && !search && (
             <div className="div_next">
               {pages.current > 1 && (
                 <button

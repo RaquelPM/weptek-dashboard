@@ -28,7 +28,6 @@ const NCardDriver = ({ id }) => {
     () => getDriversId(id),
     (response) => {
       setDriver(response.data)
-      console.log(response.data)
     }
   )
 
@@ -37,7 +36,6 @@ const NCardDriver = ({ id }) => {
       () => getDriversId(id),
       (response) => {
         setDriver(response.data)
-        console.log(response.data)
       }
     )
   }
