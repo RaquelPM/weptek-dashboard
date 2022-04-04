@@ -2,11 +2,12 @@ import React, { useState } from 'react'
 
 import { PageBase, NCardDriver, NSearch } from '~/components'
 import { useApi, useApiEffect } from '~/hooks'
-import { getDrivers } from '~/services/drivers'
+import { getDrivers, getDriversNoLimit } from '~/services/drivers'
 import { Container } from './styles'
 
 const Drivers = () => {
   const [drivers, setDrivers] = useState([])
+  const [driversList, setDriversList] = useState([])
   const [pages, setPages] = useState([])
   const [search, setSearch] = useState('')
 
@@ -25,6 +26,10 @@ const Drivers = () => {
     (response) => attData(response.data)
   )
 
+  useApiEffect(getDriversNoLimit, (response) =>
+    setDriversList(response.data.content)
+  )
+
   const changePage = (pageNumber) => {
     request(
       () => getDrivers(pageNumber),
@@ -32,7 +37,11 @@ const Drivers = () => {
     )
   }
 
-  const driversList = drivers.map((driver, i) => {
+  const driversCards = drivers.map((driver, i) => (
+    <NCardDriver key={`${pages.current}.${i}`} id={driver.id} />
+  ))
+
+  const driversListCards = driversList.map((driver, i) => {
     const regex = new RegExp(search, 'gi')
 
     return (
@@ -55,9 +64,10 @@ const Drivers = () => {
             />
             {/* <NButton label="CVS" /> */}
           </div>
-          {driversList}
+          {!search && driversCards}
+          {search && driversListCards}
 
-          {pages && pages.total > 1 && (
+          {pages && pages.total > 1 && !search && (
             <div className="div_next">
               {pages.current > 1 && (
                 <button

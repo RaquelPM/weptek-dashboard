@@ -1,6 +1,7 @@
 import { api, apiForm } from '~/services/api'
 
 export const getDrivers = (page) => api.get(`/drivers?page=${page}`)
+export const getDriversNoLimit = () => api.get(`/drivers?limit=null`)
 export const getDriversId = (id) => api.get(`/drivers/${id}`)
 
 export const enableDriver = (id) => api.put(`/drivers/${id}/enable`)
