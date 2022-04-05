@@ -17,7 +17,7 @@ const Authorization = () => {
   const navigate = useNavigate()
   const { state } = useLocation()
 
-  const { register, handleSubmit, formState } = useForm({
+  const { register, handleSubmit, formState, setError } = useForm({
     resolver: yupResolver(
       object({
         key: string().required('Preencha esse campo!'),
@@ -33,11 +33,10 @@ const Authorization = () => {
 
         request(
           () => createLicensed({ ...state.licensed, appId: id }, key),
-          () => navigate('/'),
-          (response) => console.log(response)
+          () => navigate('/')
         )
       },
-      (response) => console.log(response)
+      () => setError('key', { message: 'Chave inválida ou expirada!' })
     )
   }
 

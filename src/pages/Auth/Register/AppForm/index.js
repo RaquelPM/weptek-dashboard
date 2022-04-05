@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { Controller, useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
@@ -8,6 +8,7 @@ import { useApi, useApiEffect } from '~/hooks'
 import { getRegister, setRegister } from '~/repositories/register'
 import { verifyAppData } from '~/services/apps'
 import { getCitiesByState, getStates } from '~/services/locations'
+import formErrors from '~/utils/formErrors'
 
 import { Container, Preview } from './styles'
 import { fields, schema } from './props'
@@ -22,7 +23,17 @@ const AppForm = () => {
   const [states, setStates] = useState([])
   const [cities, setCities] = useState([])
 
-  const { register, handleSubmit, formState, watch, control } = useForm({
+  const firstRender = useRef(true)
+
+  const {
+    register,
+    handleSubmit,
+    formState,
+    watch,
+    control,
+    setValue,
+    setError,
+  } = useForm({
     resolver: yupResolver(schema),
     mode: 'all',
   })
@@ -68,7 +79,7 @@ const AppForm = () => {
     request(
       () => verifyAppData(data),
       () => navigate('/cadastro/chave', { state: { ...state, app: data } }),
-      (response) => console.log(response)
+      formErrors(setError)
     )
   }
 
@@ -94,7 +105,11 @@ const AppForm = () => {
             options={states}
             {...field}
             value={field.value}
-            onChange={(option) => field.onChange(option.name)}
+            onChange={(option) => {
+              setValue('city', '')
+
+              field.onChange(option.name)
+            }}
             error={fieldState.error?.message}
           />
         )}

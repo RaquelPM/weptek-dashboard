@@ -7,6 +7,7 @@ import { NButton, NInput } from '~/components'
 import { useApi } from '~/hooks'
 import { getRegister, setRegister } from '~/repositories/register'
 import { verifyLicensedRegister } from '~/services/licenseds'
+import formErrors from '~/utils/formErrors'
 
 import { Container } from './styles'
 import { fields, schema } from './props'
@@ -17,7 +18,7 @@ const Form = () => {
   const navigate = useNavigate()
   const { request } = useApi()
 
-  const { register, handleSubmit, formState } = useForm({
+  const { register, handleSubmit, formState, setError } = useForm({
     resolver: yupResolver(schema),
     mode: 'all',
   })
@@ -35,7 +36,7 @@ const Form = () => {
     request(
       () => verifyLicensedRegister(data),
       () => navigate('/cadastro/app', { state: { licensed: data } }),
-      (response) => console.log(response)
+      formErrors(setError)
     )
   }
 
