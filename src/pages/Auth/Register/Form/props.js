@@ -12,7 +12,7 @@ export const fields = {
   phone: {
     placeholder: 'Telefone:',
     type: 'text',
-    mask: '(99) 99999-9999',
+    mask: '+55 (99) 99999-9999',
   },
   cpf: {
     placeholder: 'CPF:',

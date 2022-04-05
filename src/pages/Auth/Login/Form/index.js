@@ -15,8 +15,7 @@ const Form = () => {
   const { register, handleSubmit, setError, formState } = useForm()
 
   const onSubmit = (data) => {
-    // data.phone = data.phone.replace(/\D/g, '')
-    // data.phone = `55${data.phone}`
+    data.phone = data.phone.replace(/\D/g, '')
 
     request(
       () => login(data),
@@ -32,22 +31,14 @@ const Form = () => {
 
   return (
     <Container onSubmit={handleSubmit(onSubmit)}>
-      {/* <NInput
+      <NInput
         light
         placeholder="Telefone"
         type="phone"
         {...register('phone')}
         error={formState.errors.phone?.message}
         errorOutline={formState.errors.password}
-        mask="(99) 99999-9999"
-      /> */}
-      <NInput
-        light
-        placeholder="Email"
-        type="email"
-        {...register('email')}
-        error={formState.errors.email?.message}
-        errorOutline={formState.errors.email}
+        mask="+55 (99) 99999-9999"
       />
       <NInput
         light
