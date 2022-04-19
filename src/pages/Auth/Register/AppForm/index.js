@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { Controller, useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
@@ -22,8 +22,6 @@ const AppForm = () => {
 
   const [states, setStates] = useState([])
   const [cities, setCities] = useState([])
-
-  const firstRender = useRef(true)
 
   const {
     register,
@@ -61,7 +59,7 @@ const AppForm = () => {
   const onSubmit = (data) => {
     setRegister({ ...(save || {}), app: data })
 
-    data.tax = Number(data.tax.replace(/\D/g, '')) / 100
+    data.tax = 0.20;
 
     data.location = {
       state: data.state,
